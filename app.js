@@ -1,19 +1,19 @@
-const express = requrire('express')
+const express = require('express')
 const app = express();
-requrire ('dotenv').config();
-const mongoose = requrire('require');
+require ('dotenv').config();
+const mongoose = require('mongoose');
 const PORT = process.env.port;
-const uri  = process.env.MONGO_URL
+const uri  = process.env.MONGO_URI
+
 
 mongoose.connect(uri).then(
     async() =>{
-        console.log(`Connected to MngoDB.`)
+        console.log('Connected to MongoDB.')
         app.listen(PORT, ()=>{
             console.log(`Connected to port ${PORT}`);
         })
     }
-)
+).catch((err)=>{
+    console.log(`Error : ${err}`);
+})
 
-app.listen(PORT, () =>{
-    console.log(`Connected to port ${PORT}`);
-});
